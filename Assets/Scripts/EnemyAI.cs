@@ -10,6 +10,11 @@ public class EnemyAI : MonoBehaviour
 	[SerializeField] Transform target = null;
 	// AI del enemigo
 	NavMeshAgent navMeshAgent;
+	// Rango de detección
+	[SerializeField] float chaseRange = 10f;
+	// Distancia al objetivo (por defecto infinito)
+	float distanceToTarget = Mathf.Infinity;
+
 
 	void Start()
 	{
@@ -18,7 +23,12 @@ public class EnemyAI : MonoBehaviour
 
 	void Update()
 	{
-		// Va hacia el jugador
-		navMeshAgent.SetDestination(target.position);
+		// Actualiza la distancia y comprueba si está en el rango
+		distanceToTarget = Vector3.Distance(target.position, transform.position);
+		if (distanceToTarget < chaseRange)
+		{
+			// Va hacia el jugador
+			navMeshAgent.SetDestination(target.position);
+		}
 	}
 }
