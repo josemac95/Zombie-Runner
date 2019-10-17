@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,8 @@ public class EnemyAI : MonoBehaviour
 	[SerializeField] float chaseRange = 10f;
 	// Distancia al objetivo (por defecto infinito)
 	float distanceToTarget = Mathf.Infinity;
+	// Si está provocado
+	bool isProvoked = false;
 
 
 	void Start()
@@ -23,13 +26,48 @@ public class EnemyAI : MonoBehaviour
 
 	void Update()
 	{
-		// Actualiza la distancia y comprueba si está en el rango
+		// Actualiza la distancia
 		distanceToTarget = Vector3.Distance(target.position, transform.position);
-		if (distanceToTarget < chaseRange)
+		// Si está provocado
+		if (isProvoked)
 		{
-			// Va hacia el jugador
-			navMeshAgent.SetDestination(target.position);
+			EngageTarget();
 		}
+		// Si está en el rango
+		else if (distanceToTarget < chaseRange)
+		{
+			// Está provocado
+			isProvoked = true;
+		}
+	}
+
+	// Asalta al objetivo
+	private void EngageTarget()
+	{
+		// Persigue al enemigo si no llega a la distancia de parada
+		if (distanceToTarget >= navMeshAgent.stoppingDistance)
+		{
+			ChaseTarget();
+		}
+		// Si está cerca, ataca
+		else
+		{
+			AttackTarget();
+		}
+
+	}
+
+	// Persigue al objetivo
+	private void ChaseTarget()
+	{
+		// Va hacia el jugador
+		navMeshAgent.SetDestination(target.position);
+	}
+
+	// Ataca al objetivo
+	private void AttackTarget()
+	{
+		print("Attack!");
 	}
 
 	// Dibuja cosas para debug
