@@ -31,4 +31,15 @@ public class EnemyAI : MonoBehaviour
 			navMeshAgent.SetDestination(target.position);
 		}
 	}
+
+	// Dibuja cosas para debug
+	// OnDrawGizmosSelected dibuja solo si se selecciona
+	void OnDrawGizmos()
+	{
+		// Rango de detección (esfera con alfa al 50%)
+		Color gizmosColor = Color.red;
+		gizmosColor.a = 0.5f;
+		Gizmos.color = gizmosColor;
+		Gizmos.DrawSphere(transform.position, chaseRange);
+	}
 }
