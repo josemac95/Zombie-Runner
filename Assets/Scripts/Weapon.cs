@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
 	[SerializeField] Camera FPCamera = null;
 	// Rango del rayo
 	[SerializeField] float range = 100f;
+	// Daño del arma
+	[SerializeField] float damage = 10f;
 
 	void Update()
 	{
@@ -28,7 +30,12 @@ public class Weapon : MonoBehaviour
 		// Si hay impacto
 		if (impacted)
 		{
-			print(hit.collider.name);
+			// Daña al enemigo
+			EnemyHealth target = hit.collider.GetComponent<EnemyHealth>();
+			if (target != null)
+			{
+				target.TakeDamage(damage);
+			}
 		}
 	}
 }
