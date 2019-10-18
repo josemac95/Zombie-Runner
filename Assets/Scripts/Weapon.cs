@@ -12,7 +12,11 @@ public class Weapon : MonoBehaviour
 	// Daño del arma
 	[SerializeField] float damage = 10f;
 	// Efecto de disparo
-	[SerializeField] ParticleSystem flash = null;
+	[SerializeField] ParticleSystem flashVFX = null;
+	// Efecto del impacto
+	[SerializeField] ParticleSystem hitVFX = null;
+	// Efecto de sangre
+	[SerializeField] ParticleSystem bloodVFX = null;
 	// Arma automática
 	[SerializeField] bool auto = false;
 
@@ -49,14 +53,14 @@ public class Weapon : MonoBehaviour
 	// Dispara
 	private void Shoot()
 	{
-		PlayFlash();
+		PlayFlashVFX();
 		ProcessRaycast();
 	}
 
 	// Efecto de disparo del arma
-	private void PlayFlash()
+	private void PlayFlashVFX()
 	{
-		flash.Play();
+		flashVFX.Play();
 	}
 
 	// Procesamiento del raycast
@@ -74,7 +78,23 @@ public class Weapon : MonoBehaviour
 			if (target != null)
 			{
 				target.TakeDamage(damage);
+				// Efecto de impacto (sangre)
+				PlayHitVFX(bloodVFX, hit);
+			}
+			else
+			{
+				// Efecto de impacto
+				PlayHitVFX(hitVFX, hit);
 			}
 		}
+	}
+
+	// Efecto del impacto
+	private void PlayHitVFX(ParticleSystem hitVFX, RaycastHit hit)
+	{
+		// El efecto se crea en la posición del impacto y perpendicular
+		ParticleSystem impact = Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+		// No me hace falta destruir el efecto
+		// Porque he puesto Stop Action = Destroy
 	}
 }

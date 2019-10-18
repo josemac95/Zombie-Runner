@@ -46,7 +46,9 @@ MonoBehaviour:
   FPCamera: {fileID: 8565583226026971374}
   range: 100
   damage: 10
-  flash: {fileID: 6202853374989402714}
+  flashVFX: {fileID: 6202853374989402714}
+  hitVFX: {fileID: 187437733489818061, guid: 79becbd50b36b584f9aafca454686223, type: 3}
+  bloodVFX: {fileID: 187437733489818061, guid: 920609edbfb0f8c409c49aeeb22131f5, type: 3}
   auto: 0
 --- !u!1 &8565583226028872392
 GameObject:
@@ -359,7 +361,7 @@ PrefabInstance:
     - target: {fileID: 3360542172024696037, guid: 4a60d8477aafac045a1f56d3a60c7813,
         type: 3}
       propertyPath: m_Name
-      value: Muzzle Flash
+      value: Muzzle Flash VFX
       objectReference: {fileID: 0}
     - target: {fileID: 3350055855090824723, guid: 4a60d8477aafac045a1f56d3a60c7813,
         type: 3}
