@@ -11,8 +11,34 @@ public class Weapon : MonoBehaviour
 	[SerializeField] float range = 100f;
 	// Daño del arma
 	[SerializeField] float damage = 10f;
+	// Efecto de disparo
+	[SerializeField] ParticleSystem flash = null;
+	// Arma automática
+	[SerializeField] bool auto = false;
 
 	void Update()
+	{
+		if (auto)
+		{
+			ShootAuto();
+		}
+		else
+		{
+			ShootSemi();
+		}
+	}
+
+	// Dispara arma automática
+	private void ShootAuto()
+	{
+		if (Input.GetButton("Fire1"))
+		{
+			Shoot();
+		}
+	}
+
+	// Dispara arma semi-automática
+	private void ShootSemi()
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
@@ -22,6 +48,19 @@ public class Weapon : MonoBehaviour
 
 	// Dispara
 	private void Shoot()
+	{
+		PlayFlash();
+		ProcessRaycast();
+	}
+
+	// Efecto de disparo del arma
+	private void PlayFlash()
+	{
+		flash.Play();
+	}
+
+	// Procesamiento del raycast
+	private void ProcessRaycast()
 	{
 		// Variable con la información del impacto
 		RaycastHit hit;
