@@ -60,6 +60,10 @@ public class EnemyAI : MonoBehaviour
 	// Persigue al objetivo
 	private void ChaseTarget()
 	{
+		// Desactiva la animación de atacar
+		gameObject.GetComponent<Animator>().SetBool("Attack", false);
+		// Activa la animación de mover
+		gameObject.GetComponent<Animator>().SetTrigger("Move");
 		// Va hacia el jugador
 		navMeshAgent.SetDestination(target.position);
 	}
@@ -67,7 +71,8 @@ public class EnemyAI : MonoBehaviour
 	// Ataca al objetivo
 	private void AttackTarget()
 	{
-		print("Attack!");
+		// Activa la animación de atacar
+		gameObject.GetComponent<Animator>().SetBool("Attack", true);
 	}
 
 	// Dibuja cosas para debug
