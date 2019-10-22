@@ -9,6 +9,8 @@ public class SceneLoader : MonoBehaviour
 	public void ReloadGame()
 	{
 		SceneManager.LoadScene(0);
+		// Reestablece el paso del tiempo tras morir
+		Time.timeScale = 1;
 	}
 
 	// Cierra el juego

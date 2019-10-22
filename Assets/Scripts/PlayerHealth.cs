@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
 	// Mata al jugador
 	private void Die()
 	{
-		print("muerto");
+		DeathHandler handler = gameObject.GetComponent<DeathHandler>();
+		handler.HandleDeath();
 	}
 }
