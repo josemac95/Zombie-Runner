@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-
 	// Jugador
 	Transform target = null;
 	// AI del enemigo

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+	// Salud del enemigo
 	[SerializeField] float health = 100f;
 
 	// Toma daño

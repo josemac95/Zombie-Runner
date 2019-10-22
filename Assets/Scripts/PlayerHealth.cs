@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+	// Salud del jugador
 	[SerializeField] float health = 100f;
 
 	// Toma daño
