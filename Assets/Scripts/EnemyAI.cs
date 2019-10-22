@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
 	// AI del enemigo
 	NavMeshAgent navMeshAgent;
 	// Rango de detección
-	[SerializeField] float chaseRange = 10f;
+	[SerializeField] float chaseRange = 25f;
 	// Distancia al objetivo (por defecto infinito)
 	float distanceToTarget = Mathf.Infinity;
 	// Si está provocado

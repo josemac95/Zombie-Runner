@@ -19,9 +19,14 @@ public class Weapon : MonoBehaviour
 	[SerializeField] ParticleSystem bloodVFX = null;
 	// Arma automática
 	[SerializeField] bool auto = false;
+	// Lógica del disparo auto
+	private bool canShoot = true;
+	// Balas por minuto
+	[SerializeField] float fireRate = 600f;
 
 	void Update()
 	{
+		switchAuto();
 		if (auto)
 		{
 			ShootAuto();
@@ -32,12 +37,21 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
+	// Cambio modo auto - semi
+	private void switchAuto()
+	{
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			auto = !auto;
+		}
+	}
+
 	// Dispara arma automática
 	private void ShootAuto()
 	{
-		if (Input.GetButton("Fire1"))
+		if (Input.GetButton("Fire1") && canShoot)
 		{
-			Shoot();
+			StartCoroutine(AutoShooting());
 		}
 	}
 
@@ -48,6 +62,16 @@ public class Weapon : MonoBehaviour
 		{
 			Shoot();
 		}
+	}
+
+	// Corutina disparo automático
+	private IEnumerator AutoShooting()
+	{
+		canShoot = false;
+		Shoot();
+		float delay = 1 / (fireRate / 60f);
+		yield return new WaitForSeconds(delay);
+		canShoot = true;
 	}
 
 	// Dispara

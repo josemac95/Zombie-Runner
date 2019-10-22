@@ -49,7 +49,8 @@ MonoBehaviour:
   flashVFX: {fileID: 6202853374989402714}
   hitVFX: {fileID: 187437733489818061, guid: 79becbd50b36b584f9aafca454686223, type: 3}
   bloodVFX: {fileID: 187437733489818061, guid: 920609edbfb0f8c409c49aeeb22131f5, type: 3}
-  auto: 0
+  auto: 1
+  fireRate: 600
 --- !u!1 &8565583226028872392
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8565583226028872392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -30}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8565583226028510958}
