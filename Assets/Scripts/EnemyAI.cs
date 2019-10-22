@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
 	float distanceToTarget = Mathf.Infinity;
 	// Si está provocado
 	bool isProvoked = false;
+	// Velocidad de rotación
+	[SerializeField] float turnSpeed = 10f;
 
 	void Start()
 	{
@@ -64,6 +66,7 @@ public class EnemyAI : MonoBehaviour
 		// Si está cerca, ataca
 		else
 		{
+			FaceTarget();
 			AttackTarget();
 		}
 
@@ -76,7 +79,7 @@ public class EnemyAI : MonoBehaviour
 		gameObject.GetComponent<Animator>().SetBool("Attack", false);
 		// Activa la animación de mover
 		gameObject.GetComponent<Animator>().SetTrigger("Move");
-		// Va hacia el jugador
+		// Va hacia el 
 		navMeshAgent.SetDestination(target.position);
 	}
 
@@ -85,6 +88,23 @@ public class EnemyAI : MonoBehaviour
 	{
 		// Activa la animación de atacar
 		gameObject.GetComponent<Animator>().SetBool("Attack", true);
+	}
+
+	// Encara al objetivo
+	private void FaceTarget()
+	{
+		// Dirección
+		// Normalizada porque no importa la magnitud, aunque es irrelevante
+		Vector3 direction = (target.position - transform.position).normalized;
+		// Quitamos el eje y para que solo mire hacia los lados
+		direction = new Vector3(direction.x, 0, direction.z);
+		// Rotación deseada
+		Quaternion lookRotation = Quaternion.LookRotation(direction);
+		// Rotación suave para que no sea al instante
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+		// ALTERNATIVAMENTE SE PODRÍA UTILIZAR TRANSFORM.LOOKAT
+		// Pero sería una rotación instantánea igual que si se hace
+		// transform.rotation = lookRotation;
 	}
 
 	// Dibuja cosas para debug

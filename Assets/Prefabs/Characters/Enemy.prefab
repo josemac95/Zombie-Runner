@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 10
+  turnSpeed: 10
 --- !u!114 &2106915470
 MonoBehaviour:
   m_ObjectHideFlags: 0
