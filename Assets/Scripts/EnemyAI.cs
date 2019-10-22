@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
 
 	// Jugador
-	[SerializeField] Transform target = null;
+	Transform target = null;
 	// AI del enemigo
 	NavMeshAgent navMeshAgent;
 	// Rango de detección
@@ -18,33 +18,45 @@ public class EnemyAI : MonoBehaviour
 	// Si está provocado
 	bool isProvoked = false;
 
-
 	void Start()
 	{
 		navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+		// Jugador
+		PlayerHealth player = FindObjectOfType<PlayerHealth>();
+		if (player != null)
+		{
+			target = player.transform;
+		}
+		else
+		{
+			Debug.LogWarning("No player (PlayerHealth Script)");
+		}
 	}
 
 	void Update()
 	{
-		// Actualiza la distancia
-		distanceToTarget = Vector3.Distance(target.position, transform.position);
-		// Si está provocado
-		if (isProvoked)
+		if (target != null)
 		{
-			EngageTarget();
-		}
-		// Si está en el rango
-		else if (distanceToTarget < chaseRange)
-		{
-			// Está provocado
-			isProvoked = true;
+			// Actualiza la distancia
+			distanceToTarget = Vector3.Distance(target.position, transform.position);
+			// Si está provocado
+			if (isProvoked)
+			{
+				EngageTarget();
+			}
+			// Si está en el rango
+			else if (distanceToTarget < chaseRange)
+			{
+				// Está provocado
+				isProvoked = true;
+			}
 		}
 	}
 
 	// Asalta al objetivo
 	private void EngageTarget()
 	{
-		// Persigue al enemigo si no llega a la distancia de parada
+		// Persigue al objetivo si no llega a la distancia de parada
 		if (distanceToTarget >= navMeshAgent.stoppingDistance)
 		{
 			ChaseTarget();
