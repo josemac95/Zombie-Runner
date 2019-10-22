@@ -54,6 +54,12 @@ public class EnemyAI : MonoBehaviour
 		}
 	}
 
+	// El enemigo se provoca si recibe daño
+	public void OnDamageTaken()
+	{
+		isProvoked = true;
+	}
+
 	// Asalta al objetivo
 	private void EngageTarget()
 	{

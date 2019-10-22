@@ -14,6 +14,9 @@ public class EnemyHealth : MonoBehaviour
 		// Para evitar muerte por impacto simultáneo
 		if (health > 0)
 		{
+			// Llama al método si está en algún script del objeto o sus hijos
+			// SendMessage también valdría, solo que no mira los hijos
+			BroadcastMessage("OnDamageTaken");
 			// Queda menos vida
 			health = health - damage;
 			// Si está muerto
