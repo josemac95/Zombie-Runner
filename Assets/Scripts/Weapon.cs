@@ -18,15 +18,15 @@ public class Weapon : MonoBehaviour
 	// Efecto de sangre
 	[SerializeField] ParticleSystem bloodVFX = null;
 	// Arma automática
-	[SerializeField] bool auto = false;
+	[SerializeField] bool auto = true;
 	// Lógica del disparo auto
-	private bool canShoot = true;
+	bool canShoot = true;
 	// Balas por minuto
 	[SerializeField] float fireRate = 600f;
 
 	void Update()
 	{
-		switchAuto();
+		SwitchAuto();
 		if (auto)
 		{
 			ShootAuto();
@@ -38,9 +38,9 @@ public class Weapon : MonoBehaviour
 	}
 
 	// Cambio modo auto - semi
-	private void switchAuto()
+	private void SwitchAuto()
 	{
-		if (Input.GetKeyDown(KeyCode.T))
+		if (Input.GetKeyDown(KeyCode.V))
 		{
 			auto = !auto;
 		}
