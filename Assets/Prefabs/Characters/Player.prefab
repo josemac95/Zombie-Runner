@@ -229,6 +229,8 @@ MonoBehaviour:
   zoomOutFOV: 60
   zoomInFOV: 30
   toggle: 1
+  zoomOutSensitivity: 2
+  zoomInSensitivity: 0.5
 --- !u!1 &8565583226028872394
 GameObject:
   m_ObjectHideFlags: 0

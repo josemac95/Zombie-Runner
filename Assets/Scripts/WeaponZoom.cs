@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson; // Para el FPS Controller
 
 public class WeaponZoom : MonoBehaviour
 {
@@ -14,6 +15,17 @@ public class WeaponZoom : MonoBehaviour
 	bool zoomInToggle = false;
 	// Activar modo toggle
 	[SerializeField] bool toggle = true;
+	// Para la sensibilidad
+	RigidbodyFirstPersonController controller;
+	// Sensibilidad por defecto
+	[SerializeField] float zoomOutSensitivity = 2f;
+	// Sensibilidad con zoom activado
+	[SerializeField] float zoomInSensitivity = 0.5f;
+
+	void Start()
+	{
+		controller = gameObject.GetComponent<RigidbodyFirstPersonController>();
+	}
 
 	void Update()
 	{
@@ -45,12 +57,12 @@ public class WeaponZoom : MonoBehaviour
 			if (!zoomInToggle)
 			{
 				zoomInToggle = true;
-				FPCamera.fieldOfView = zoomInFOV;
+				ZoomIn();
 			}
 			else
 			{
 				zoomInToggle = false;
-				FPCamera.fieldOfView = zoomOutFOV;
+				ZoomOut();
 			}
 		}
 	}
@@ -60,11 +72,27 @@ public class WeaponZoom : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire2"))
 		{
-			FPCamera.fieldOfView = zoomInFOV;
+			ZoomIn();
 		}
 		else if (Input.GetButtonUp("Fire2"))
 		{
-			FPCamera.fieldOfView = zoomOutFOV;
+			ZoomOut();
 		}
+	}
+
+	// Si se hace zoom cambia el FOV y la sensibilidad
+	private void ZoomIn()
+	{
+		FPCamera.fieldOfView = zoomInFOV;
+		controller.mouseLook.XSensitivity = zoomInSensitivity;
+		controller.mouseLook.YSensitivity = zoomInSensitivity;
+	}
+
+	// Si se hace zoom cambia el FOV y la sensibilidad
+	private void ZoomOut()
+	{
+		FPCamera.fieldOfView = zoomOutFOV;
+		controller.mouseLook.XSensitivity = zoomOutSensitivity;
+		controller.mouseLook.YSensitivity = zoomOutSensitivity;
 	}
 }
