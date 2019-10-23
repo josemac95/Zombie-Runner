@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson; // Para el FPS Controller
+using TMPro; // Para la UI (TextMeshPro)
 
 public class WeaponZoom : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class WeaponZoom : MonoBehaviour
 	[SerializeField] float zoomOutSensitivity = 2f;
 	// Sensibilidad con zoom activado
 	[SerializeField] float zoomInSensitivity = 0.5f;
+	// Texto para el modo del zoom
+	[SerializeField] TextMeshProUGUI zoomModeText = null;
 
 	void Start()
 	{
@@ -46,6 +49,14 @@ public class WeaponZoom : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			toggle = !toggle;
+			if (toggle)
+			{
+				zoomModeText.text = "Toggle";
+			}
+			else
+			{
+				zoomModeText.text = "Hold";
+			}
 		}
 	}
 

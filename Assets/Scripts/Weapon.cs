@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; // Para la UI (TextMeshPro)
 
 public class Weapon : MonoBehaviour
 {
@@ -23,9 +24,16 @@ public class Weapon : MonoBehaviour
 	bool canShoot = true;
 	// Balas por minuto
 	[SerializeField] float fireRate = 600f;
+	// Slot de munición
+	[SerializeField] Ammo ammoSlot = null;
+	// Texto para el modo de disparo
+	[SerializeField] TextMeshProUGUI fireModeText = null;
+	// Silenciador
+	[SerializeField] GameObject suppressor = null;
 
 	void Update()
 	{
+		SwitchSuppressor();
 		SwitchAuto();
 		if (auto)
 		{
@@ -37,12 +45,37 @@ public class Weapon : MonoBehaviour
 		}
 	}
 
+	// Pone el silenciador
+	private void SwitchSuppressor()
+	{
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			// Si está activo (no tiene en cuanta a su padre)
+			if (suppressor.activeSelf)
+			{
+				suppressor.SetActive(false);
+			}
+			else
+			{
+				suppressor.SetActive(true);
+			}
+		}
+	}
+
 	// Cambio modo auto - semi
 	private void SwitchAuto()
 	{
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			auto = !auto;
+			if (auto)
+			{
+				fireModeText.text = "Auto";
+			}
+			else
+			{
+				fireModeText.text = "Semi";
+			}
 		}
 	}
 
@@ -77,14 +110,23 @@ public class Weapon : MonoBehaviour
 	// Dispara
 	private void Shoot()
 	{
-		PlayFlashVFX();
-		ProcessRaycast();
+		// Si hay balas
+		if (ammoSlot.GetCurrentAmmo() > 0)
+		{
+			ammoSlot.ReduceCurrentAmmo();
+			PlayFlashVFX();
+			ProcessRaycast();
+		}
 	}
 
 	// Efecto de disparo del arma
 	private void PlayFlashVFX()
 	{
-		flashVFX.Play();
+		// Si el silenciador está puesto, no hay flash
+		if (!suppressor.activeSelf)
+		{
+			flashVFX.Play();
+		}
 	}
 
 	// Procesamiento del raycast

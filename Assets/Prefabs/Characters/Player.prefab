@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 8565583226028510958}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8565583226529423820
+--- !u!114 &1953277248017280087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,6 +51,9 @@ MonoBehaviour:
   bloodVFX: {fileID: 187437733489818061, guid: 920609edbfb0f8c409c49aeeb22131f5, type: 3}
   auto: 1
   fireRate: 600
+  ammoSlot: {fileID: 8565583226529423820}
+  fireModeText: {fileID: 0}
+  suppressor: {fileID: 6247024979984303036}
 --- !u!1 &8565583226028872392
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +69,7 @@ GameObject:
   - component: {fileID: 3602570506751727937}
   - component: {fileID: 2098927342}
   - component: {fileID: 8565583226529423821}
+  - component: {fileID: 8565583226529423820}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -231,6 +235,20 @@ MonoBehaviour:
   toggle: 1
   zoomOutSensitivity: 2
   zoomInSensitivity: 0.5
+  zoomModeText: {fileID: 0}
+--- !u!114 &8565583226529423820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8565583226028872392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83cf724b2c3d8394592c593d633a8ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoAmount: 10
 --- !u!1 &8565583226028872394
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +585,12 @@ GameObject:
 --- !u!4 &6247024979984211858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2337074158996965286, guid: ada2587319194f542957a8c2ae277cb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8565583225705011252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6247024979984303036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2337074158997199752, guid: ada2587319194f542957a8c2ae277cb9,
     type: 3}
   m_PrefabInstance: {fileID: 8565583225705011252}
   m_PrefabAsset: {fileID: 0}

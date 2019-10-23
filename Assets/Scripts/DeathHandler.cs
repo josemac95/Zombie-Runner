@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeathHandler : MonoBehaviour
 {
+	// Canvas del menú de game over
 	[SerializeField] Canvas gameOverCanvas = null;
 
 	void Start()
