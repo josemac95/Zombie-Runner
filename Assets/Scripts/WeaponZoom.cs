@@ -17,7 +17,7 @@ public class WeaponZoom : MonoBehaviour
 	// Activar modo toggle
 	[SerializeField] bool toggle = true;
 	// Para la sensibilidad
-	RigidbodyFirstPersonController controller;
+	[SerializeField] RigidbodyFirstPersonController controller = null;
 	// Sensibilidad por defecto
 	[SerializeField] float zoomOutSensitivity = 2f;
 	// Sensibilidad con zoom activado
@@ -27,7 +27,7 @@ public class WeaponZoom : MonoBehaviour
 
 	void Start()
 	{
-		controller = gameObject.GetComponent<RigidbodyFirstPersonController>();
+		SetLabelZoom();
 	}
 
 	void Update()
@@ -49,14 +49,20 @@ public class WeaponZoom : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			toggle = !toggle;
-			if (toggle)
-			{
-				zoomModeText.text = "Toggle";
-			}
-			else
-			{
-				zoomModeText.text = "Hold";
-			}
+			SetLabelZoom();
+		}
+	}
+
+	// Pone la etiqueta correcta del modo de zoom
+	private void SetLabelZoom()
+	{
+		if (toggle)
+		{
+			zoomModeText.text = "Toggle";
+		}
+		else
+		{
+			zoomModeText.text = "Hold";
 		}
 	}
 

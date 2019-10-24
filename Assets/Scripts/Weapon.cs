@@ -21,15 +21,24 @@ public class Weapon : MonoBehaviour
 	// Arma automática
 	[SerializeField] bool auto = true;
 	// Lógica del disparo auto
+	bool canShootAuto = true;
+	// Lógica del disparo semi (delay)
 	bool canShoot = true;
 	// Balas por minuto
 	[SerializeField] float fireRate = 600f;
+	// Delay para el disparo semi
+	[SerializeField] float delay = 0.25f;
 	// Slot de munición
 	[SerializeField] Ammo ammoSlot = null;
 	// Texto para el modo de disparo
 	[SerializeField] TextMeshProUGUI fireModeText = null;
 	// Silenciador
 	[SerializeField] GameObject suppressor = null;
+
+	void Start()
+	{
+		SetLabelAuto();
+	}
 
 	void Update()
 	{
@@ -48,16 +57,20 @@ public class Weapon : MonoBehaviour
 	// Pone el silenciador
 	private void SwitchSuppressor()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
+		// Si tiene silenciador
+		if (suppressor != null)
 		{
-			// Si está activo (no tiene en cuanta a su padre)
-			if (suppressor.activeSelf)
+			if (Input.GetKeyDown(KeyCode.Q))
 			{
-				suppressor.SetActive(false);
-			}
-			else
-			{
-				suppressor.SetActive(true);
+				// Si está activo (no tiene en cuanta a su padre)
+				if (suppressor.activeSelf)
+				{
+					suppressor.SetActive(false);
+				}
+				else
+				{
+					suppressor.SetActive(true);
+				}
 			}
 		}
 	}
@@ -68,44 +81,60 @@ public class Weapon : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			auto = !auto;
-			if (auto)
-			{
-				fireModeText.text = "Auto";
-			}
-			else
-			{
-				fireModeText.text = "Semi";
-			}
+			SetLabelAuto();
+		}
+	}
+
+	// Pone la etiqueta correcta del modo de disparo
+	private void SetLabelAuto()
+	{
+		if (auto)
+		{
+			fireModeText.text = "Auto";
+		}
+		else
+		{
+			fireModeText.text = "Semi";
 		}
 	}
 
 	// Dispara arma automática
 	private void ShootAuto()
 	{
-		if (Input.GetButton("Fire1") && canShoot)
+		if (Input.GetButton("Fire1") && canShootAuto)
 		{
 			StartCoroutine(AutoShooting());
-		}
-	}
-
-	// Dispara arma semi-automática
-	private void ShootSemi()
-	{
-		if (Input.GetButtonDown("Fire1"))
-		{
-			Shoot();
 		}
 	}
 
 	// Corutina disparo automático
 	private IEnumerator AutoShooting()
 	{
-		canShoot = false;
+		canShootAuto = false;
 		Shoot();
 		float delay = 1 / (fireRate / 60f);
 		yield return new WaitForSeconds(delay);
+		canShootAuto = true;
+	}
+
+	// Dispara arma semi-automática
+	private void ShootSemi()
+	{
+		if (Input.GetButtonDown("Fire1") && canShoot)
+		{
+			StartCoroutine(SemiShooting());
+		}
+	}
+
+	// Corutina disparo semi-automático
+	private IEnumerator SemiShooting()
+	{
+		canShoot = false;
+		Shoot();
+		yield return new WaitForSeconds(delay);
 		canShoot = true;
 	}
+
 
 	// Dispara
 	private void Shoot()
@@ -122,8 +151,13 @@ public class Weapon : MonoBehaviour
 	// Efecto de disparo del arma
 	private void PlayFlashVFX()
 	{
+		// Si no hay silenciador (no hay opción)
+		if (suppressor == null)
+		{
+			flashVFX.Play();
+		}
 		// Si el silenciador está puesto, no hay flash
-		if (!suppressor.activeSelf)
+		else if (!suppressor.activeSelf)
 		{
 			flashVFX.Play();
 		}

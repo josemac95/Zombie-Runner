@@ -336,6 +336,7 @@ MonoBehaviour:
   bloodVFX: {fileID: 187437733489818061, guid: 920609edbfb0f8c409c49aeeb22131f5, type: 3}
   auto: 0
   fireRate: 300
+  delay: 0.2
   ammoSlot: {fileID: 0}
   fireModeText: {fileID: 0}
   suppressor: {fileID: 2337074158997199752}

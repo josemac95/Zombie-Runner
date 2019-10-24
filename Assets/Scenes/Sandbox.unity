@@ -5429,25 +5429,40 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 61931120}
-    - target: {fileID: 8565583226529423821, guid: 84eff1945e1f3654b9d74352cbd702c9,
+    - target: {fileID: 691625108618943134, guid: 84eff1945e1f3654b9d74352cbd702c9,
         type: 3}
-      propertyPath: zoomModeText
-      value: 
-      objectReference: {fileID: 1148577530}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3669517259334806863, guid: 84eff1945e1f3654b9d74352cbd702c9,
         type: 3}
       propertyPath: fireModeText
       value: 
       objectReference: {fileID: 540506962}
+    - target: {fileID: 6108700171312681164, guid: 84eff1945e1f3654b9d74352cbd702c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8049038293060036381, guid: 84eff1945e1f3654b9d74352cbd702c9,
         type: 3}
       propertyPath: fireModeText
       value: 
       objectReference: {fileID: 540506962}
+    - target: {fileID: 7624046988137296072, guid: 84eff1945e1f3654b9d74352cbd702c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5961522948101015321, guid: 84eff1945e1f3654b9d74352cbd702c9,
         type: 3}
       propertyPath: fireModeText
       value: 
       objectReference: {fileID: 540506962}
+    - target: {fileID: 4465082708644595742, guid: 84eff1945e1f3654b9d74352cbd702c9,
+        type: 3}
+      propertyPath: zoomModeText
+      value: 
+      objectReference: {fileID: 1148577530}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84eff1945e1f3654b9d74352cbd702c9, type: 3}
