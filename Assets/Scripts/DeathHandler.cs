@@ -18,8 +18,8 @@ public class DeathHandler : MonoBehaviour
 	{
 		// Vuelve a activar el menú de game over
 		gameOverCanvas.enabled = true;
-		// No puede disparar
-		gameObject.GetComponentInChildren<Weapon>().enabled = false;
+		// Desactiva scripts de armas
+		DisableWeaponScripts();
 		// No hay tiempo para que el juego no intervenga
 		// En cambiar el modo del cursor
 		Time.timeScale = 0;
@@ -27,5 +27,28 @@ public class DeathHandler : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		// Muestra el cursor
 		Cursor.visible = true;
+	}
+
+	// Desactiva el disparo, el switcher y el zoom
+	private void DisableWeaponScripts()
+	{
+		// No puede disparar
+		Weapon weapon = gameObject.GetComponentInChildren<Weapon>();
+		if (weapon != null)
+		{
+			weapon.enabled = false;
+		}
+		// No puede cambiar de arma
+		WeaponSwitcher switcher = gameObject.GetComponentInChildren<WeaponSwitcher>();
+		if (switcher != null)
+		{
+			switcher.enabled = false;
+		}
+		// No puede hacer zoom con el arma
+		WeaponZoom zoom = gameObject.GetComponentInChildren<WeaponZoom>();
+		if (zoom != null)
+		{
+			zoom.enabled = false;
+		}
 	}
 }
