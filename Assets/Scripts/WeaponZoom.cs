@@ -25,7 +25,9 @@ public class WeaponZoom : MonoBehaviour
 	// Texto para el modo del zoom
 	[SerializeField] TextMeshProUGUI zoomModeText = null;
 
-	void Start()
+	// Se llama al comienzo (Start) y cada vez que se cambia de arma
+	// Porque se desactiva el componente (también valdría el objeto) en el switcher
+	void OnEnable()
 	{
 		SetLabelZoom();
 	}

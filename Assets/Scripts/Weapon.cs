@@ -35,7 +35,9 @@ public class Weapon : MonoBehaviour
 	// Silenciador
 	[SerializeField] GameObject suppressor = null;
 
-	void Start()
+	// Se llama al comienzo (Start) y cada vez que se cambia de arma
+	// Porque se desactiva el componente (también valdría el objeto) en el switcher
+	void OnEnable()
 	{
 		SetLabelAuto();
 	}
