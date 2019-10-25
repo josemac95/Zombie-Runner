@@ -337,6 +337,7 @@ MonoBehaviour:
   fireRate: 60
   delay: 1
   ammoSlot: {fileID: 0}
+  ammoType: 1
   fireModeText: {fileID: 0}
   suppressor: {fileID: 0}
 --- !u!1 &2337074158997199754

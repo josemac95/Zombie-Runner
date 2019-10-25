@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro; // Para la UI (TextMeshPro)
 
@@ -30,6 +28,7 @@ public class Weapon : MonoBehaviour
 	[SerializeField] float delay = 0.25f;
 	// Slot de munición
 	[SerializeField] Ammo ammoSlot = null;
+	[SerializeField] AmmoType ammoType;
 	// Texto para el modo de disparo
 	[SerializeField] TextMeshProUGUI fireModeText = null;
 	// Silenciador
@@ -142,9 +141,9 @@ public class Weapon : MonoBehaviour
 	private void Shoot()
 	{
 		// Si hay balas
-		if (ammoSlot.GetCurrentAmmo() > 0)
+		if (ammoSlot.GetCurrentAmmo(ammoType) > 0)
 		{
-			ammoSlot.ReduceCurrentAmmo();
+			ammoSlot.ReduceCurrentAmmo(ammoType);
 			PlayFlashVFX();
 			ProcessRaycast();
 		}

@@ -1,21 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-	// Cantidad de munición
-	[SerializeField] int ammoAmount = 10;
+	// Slots de munición disponibles para el jugador
+	[SerializeField] AmmoSlot[] ammoSlots;
+
+	// Clase privada solo visible dentro de la clase Ammo
+	// Variables públicas para que sean accesibles para la clase Ammo
+	// Serializa la clase para que se muestre en el inspector
+	// Slot de munición
+	[System.Serializable]
+	private class AmmoSlot
+	{
+		// Tipo de munición
+		public AmmoType ammoType;
+		// Cantidad de munición
+		public int ammoAmount;
+	}
 
 	// Cantidad actual
-	public int GetCurrentAmmo()
+	public int GetCurrentAmmo(AmmoType ammoType)
 	{
-		return ammoAmount;
+		return GetAmmoSlot(ammoType).ammoAmount;
 	}
 
 	// Disminuye la cantidad
-	public void ReduceCurrentAmmo()
+	public void ReduceCurrentAmmo(AmmoType ammoType)
 	{
-		ammoAmount--;
+		GetAmmoSlot(ammoType).ammoAmount--;
+	}
+
+	// Obtiene el slot de munición correspondiente con el tipo de munición
+	private AmmoSlot GetAmmoSlot(AmmoType ammoType)
+	{
+		foreach (AmmoSlot slot in ammoSlots)
+		{
+			if (slot.ammoType == ammoType)
+			{
+				return slot;
+			}
+		}
+		return null;
 	}
 }
