@@ -3,7 +3,7 @@
 public class Ammo : MonoBehaviour
 {
 	// Slots de munición disponibles para el jugador
-	[SerializeField] AmmoSlot[] ammoSlots;
+	[SerializeField] AmmoSlot[] ammoSlots = null;
 
 	// Clase privada solo visible dentro de la clase Ammo
 	// Variables públicas para que sean accesibles para la clase Ammo
@@ -13,9 +13,9 @@ public class Ammo : MonoBehaviour
 	private class AmmoSlot
 	{
 		// Tipo de munición
-		public AmmoType ammoType;
+		public AmmoType ammoType = 0;
 		// Cantidad de munición
-		public int ammoAmount;
+		public int ammoAmount = 0;
 	}
 
 	// Cantidad actual

@@ -30,6 +30,14 @@ public class WeaponZoom : MonoBehaviour
 		SetLabelZoom();
 	}
 
+	// Se llama cuando se desactiva el componente (también valdría el objeto) en el switcher
+	// Soluciona bug: se queda el zoom cuando se cambia de arma
+	void OnDisable()
+	{
+		zoomInToggle = false;
+		ZoomOut();
+	}
+
 	void Update()
 	{
 		SwitchToggle();

@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
 	[SerializeField] float delay = 0.25f;
 	// Slot de munición
 	[SerializeField] Ammo ammoSlot = null;
-	[SerializeField] AmmoType ammoType;
+	[SerializeField] AmmoType ammoType = 0;
 	// Texto para el modo de disparo
 	[SerializeField] TextMeshProUGUI fireModeText = null;
 	// Silenciador
