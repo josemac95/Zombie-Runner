@@ -17,7 +17,6 @@ public class EnemyAttack : MonoBehaviour
 	{
 		if (target != null)
 		{
-			print("PUM! " + damage + " damage");
 			// Quita vida
 			target.TakeDamage(damage);
 		}

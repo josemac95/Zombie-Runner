@@ -71,7 +71,6 @@ public class EnemyAI : MonoBehaviour
 			FaceTarget();
 			AttackTarget();
 		}
-
 	}
 
 	// Persigue al objetivo

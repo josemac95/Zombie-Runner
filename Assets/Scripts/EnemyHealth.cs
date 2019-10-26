@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 		// Para evitar muerte por impacto simultáneo
+		// Y la muerte después de muerto ya que no se destruye el objeto
 		if (health > 0)
 		{
 			// Llama al método si está en algún script del objeto o sus hijos
@@ -27,7 +28,9 @@ public class EnemyHealth : MonoBehaviour
 	// Mata al enemigo
 	private void Die()
 	{
-		// Destruye el enemigo
-		Destroy(gameObject);
+		// Activa la animación de morir
+		gameObject.GetComponent<Animator>().SetTrigger("Die");
+		// Desactiva la IA del enemigo para que no haga nada 
+		gameObject.GetComponent<EnemyAI>().enabled = false;
 	}
 }
