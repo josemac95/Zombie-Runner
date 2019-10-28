@@ -7645,6 +7645,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1914413663}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &1933327096 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4021760808918541308, guid: 18490dbbaa5e4ff4999c47f841db7cb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2556843684867174152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1945028369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9772,5 +9778,10 @@ PrefabInstance:
       propertyPath: flashLightSlider
       value: 
       objectReference: {fileID: 1494339590}
+    - target: {fileID: 8858181552887694399, guid: 84eff1945e1f3654b9d74352cbd702c9,
+        type: 3}
+      propertyPath: impactCanvas
+      value: 
+      objectReference: {fileID: 1933327096}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84eff1945e1f3654b9d74352cbd702c9, type: 3}

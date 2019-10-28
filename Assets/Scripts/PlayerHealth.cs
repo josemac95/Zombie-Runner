@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
 		// Para evitar muerte por impacto simultáneo
 		if (health > 0)
 		{
+			// Muestra que se ha recibido daño
+			gameObject.GetComponent<DisplayDamage>().DisplayBlood();
 			// Queda menos vida
 			health = health - damage;
 			// Si está muerto
