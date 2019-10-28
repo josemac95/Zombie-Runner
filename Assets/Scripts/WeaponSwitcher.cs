@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; // Para definir la función en una linea
 using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour

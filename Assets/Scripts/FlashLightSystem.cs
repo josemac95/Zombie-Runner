@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI; // Para la UI (Slider)
 
 public class FlashLightSystem : MonoBehaviour
 {
@@ -17,18 +17,29 @@ public class FlashLightSystem : MonoBehaviour
 	[SerializeField] float maxAngle = 70f;
 	// La luz
 	Light myLight;
+	// UI de la luz
+	[SerializeField] Slider flashLightSlider = null;
 
 	void Start()
 	{
 		myLight = gameObject.GetComponent<Light>();
 		myLight.intensity = maxIntensity;
 		myLight.spotAngle = maxAngle;
+		flashLightSlider.minValue = minIntensity;
+		flashLightSlider.maxValue = maxIntensity;
 	}
 
 	void Update()
 	{
+		DisplayFlashLight();
 		DecreaseLightIntensity();
 		DecreaseLightAngle();
+	}
+
+	// Muestra la UI de la luz
+	private void DisplayFlashLight()
+	{
+		flashLightSlider.value = myLight.intensity;
 	}
 
 	// Reduce la intensidad de la luz

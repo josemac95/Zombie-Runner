@@ -27,7 +27,7 @@ public class WeaponZoom : MonoBehaviour
 	// Porque se desactiva el componente (también valdría el objeto) en el switcher
 	void OnEnable()
 	{
-		SetLabelZoom();
+		DisplayZoomMode();
 	}
 
 	// Se llama cuando se desactiva el componente (también valdría el objeto) en el switcher
@@ -57,12 +57,12 @@ public class WeaponZoom : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			toggle = !toggle;
-			SetLabelZoom();
+			DisplayZoomMode();
 		}
 	}
 
 	// Pone la etiqueta correcta del modo de zoom
-	private void SetLabelZoom()
+	private void DisplayZoomMode()
 	{
 		if (toggle)
 		{

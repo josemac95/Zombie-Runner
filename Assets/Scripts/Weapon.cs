@@ -31,6 +31,8 @@ public class Weapon : MonoBehaviour
 	[SerializeField] AmmoType ammoType = 0;
 	// Texto para el modo de disparo
 	[SerializeField] TextMeshProUGUI fireModeText = null;
+	// Texto para la munición
+	[SerializeField] TextMeshProUGUI ammoText = null;
 	// Silenciador
 	[SerializeField] GameObject suppressor = null;
 
@@ -38,11 +40,25 @@ public class Weapon : MonoBehaviour
 	// Porque se desactiva el componente (también valdría el objeto) en el switcher
 	void OnEnable()
 	{
-		SetLabelAuto();
+		DisplayFireMode();
+	}
+
+	// Pone la etiqueta correcta del modo de disparo
+	private void DisplayFireMode()
+	{
+		if (auto)
+		{
+			fireModeText.text = "Auto";
+		}
+		else
+		{
+			fireModeText.text = "Semi";
+		}
 	}
 
 	void Update()
 	{
+		DisplayAmmo();
 		SwitchSuppressor();
 		SwitchAuto();
 		if (auto)
@@ -53,6 +69,13 @@ public class Weapon : MonoBehaviour
 		{
 			ShootSemi();
 		}
+	}
+
+	// Cambia el texto de la munición
+	private void DisplayAmmo()
+	{
+		int currentAmmo = ammoSlot.GetCurrentAmmo(ammoType);
+		ammoText.text = currentAmmo.ToString();
 	}
 
 	// Pone el silenciador
@@ -82,20 +105,7 @@ public class Weapon : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			auto = !auto;
-			SetLabelAuto();
-		}
-	}
-
-	// Pone la etiqueta correcta del modo de disparo
-	private void SetLabelAuto()
-	{
-		if (auto)
-		{
-			fireModeText.text = "Auto";
-		}
-		else
-		{
-			fireModeText.text = "Semi";
+			DisplayFireMode();
 		}
 	}
 
